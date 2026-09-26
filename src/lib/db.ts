@@ -76,7 +76,7 @@ export function computePriority(t: Ticket, c: Customer | undefined, w: Weights, 
   const past = c?.past_ticket_count ?? 0;
   const rows: [keyof Weights, string, number, string][] = [
     ["severity", "Severity", SEV[t.severity] ?? 25, t.severity],
-    ["tier", "Customer tier", TIER[c?.tier ?? "Free"], c?.tier ?? "Unknown"],
+    ["tier", "Customer tier", TIER[c?.tier ?? "Free"] ?? 25, c?.tier ?? "Unknown"],
     ["sla", "SLA urgency", slaRaw, slaDetail],
     ["sentiment", "Sentiment", ((1 - t.sentiment) / 2) * 100, `Score ${t.sentiment.toFixed(2)}`],
     ["repeat", "Repeat tickets", Math.min(past / 5, 1) * 100, `${past} previous tickets`],
