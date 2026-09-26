@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as WorkloadRouteImport } from './routes/workload'
+import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
 import { Route as TicketsNewRouteImport } from './routes/tickets.new'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +22,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkloadRoute = WorkloadRouteImport.update({
+  id: '/workload',
+  path: '/workload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TicketsIdRoute = TicketsIdRouteImport.update({
+  id: '/tickets/$id',
+  path: '/tickets/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TicketsNewRoute = TicketsNewRouteImport.update({
@@ -31,31 +55,69 @@ const TicketsNewRoute = TicketsNewRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
+  '/settings': typeof SettingsRoute
+  '/workload': typeof WorkloadRoute
+  '/tickets/$id': typeof TicketsIdRoute
   '/tickets/new': typeof TicketsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
+  '/settings': typeof SettingsRoute
+  '/workload': typeof WorkloadRoute
+  '/tickets/$id': typeof TicketsIdRoute
   '/tickets/new': typeof TicketsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
+  '/settings': typeof SettingsRoute
+  '/workload': typeof WorkloadRoute
+  '/tickets/$id': typeof TicketsIdRoute
   '/tickets/new': typeof TicketsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/tickets/new'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/dashboard'
+    | '/settings'
+    | '/workload'
+    | '/tickets/$id'
+    | '/tickets/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/tickets/new'
-  id: '__root__' | '/' | '/dashboard' | '/tickets/new'
+  to:
+    | '/'
+    | '/analytics'
+    | '/dashboard'
+    | '/settings'
+    | '/workload'
+    | '/tickets/$id'
+    | '/tickets/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/dashboard'
+    | '/settings'
+    | '/workload'
+    | '/tickets/$id'
+    | '/tickets/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   DashboardRoute: typeof DashboardRoute
+  SettingsRoute: typeof SettingsRoute
+  WorkloadRoute: typeof WorkloadRoute
+  TicketsIdRoute: typeof TicketsIdRoute
   TicketsNewRoute: typeof TicketsNewRoute
 }
 
@@ -68,11 +130,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workload': {
+      id: '/workload'
+      path: '/workload'
+      fullPath: '/workload'
+      preLoaderRoute: typeof WorkloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tickets/$id': {
+      id: '/tickets/$id'
+      path: '/tickets/$id'
+      fullPath: '/tickets/$id'
+      preLoaderRoute: typeof TicketsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tickets/new': {
@@ -87,7 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   DashboardRoute: DashboardRoute,
+  SettingsRoute: SettingsRoute,
+  WorkloadRoute: WorkloadRoute,
+  TicketsIdRoute: TicketsIdRoute,
   TicketsNewRoute: TicketsNewRoute,
 }
 export const routeTree = rootRouteImport
